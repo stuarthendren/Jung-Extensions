@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Jung-extensions-test
-Bundle-SymbolicName: jung-extensions-test
-Bundle-Version: 1.0.0.qualifier
-Fragment-Host: jung-extensions;bundle-version="1.0.0"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Require-Bundle: org.junit4;bundle-version="4.8.1"

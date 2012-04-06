@@ -35,17 +35,14 @@ public class PartitionDendogramImpl<T> implements PartitionDendrogram<T> {
 		partitions.add(partition);
 	}
 
-	@Override
 	public Iterator<Partition<T>> getPartitions() {
 		return Collections.unmodifiableList(partitions).iterator();
 	}
 
-	@Override
 	public List<Partition<T>> getPartitionsList() {
 		return Collections.unmodifiableList(partitions);
 	}
 
-	@Override
 	public boolean isValid() {
 		Iterator<Partition<T>> iterator = partitions.iterator();
 		Partition<T> lastPartition = iterator.next();

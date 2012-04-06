@@ -3,6 +3,7 @@ package net.stuarthendren.jung.dendrogram.graph;
 import java.util.Collection;
 import java.util.Set;
 
+
 /**
  * A DendrogramNode is a node of the graph encoded dendrogram {@link GraphDendrogram}.
  * 
