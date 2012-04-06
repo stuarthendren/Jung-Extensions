@@ -1,4 +1,4 @@
-package net.stuarthendren.edge.communities.test;
+package net.stuarthendren.jung.dendrogram.graph.impl;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,7 +18,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class DendrogramTest {
+public class KeyedDendrogramTest {
 
 	private Collection<Integer> intergers;
 

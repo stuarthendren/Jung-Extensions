@@ -1,4 +1,4 @@
-package net.stuarthendren.edge.communities.test;
+package net.stuarthendren.jung.dendrogram.partition.impl;
 
 import junit.framework.Assert;
 import net.stuarthendren.jung.dendrogram.partition.impl.PartitionDendogramImpl;

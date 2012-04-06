@@ -1,4 +1,4 @@
-package net.stuarthendren.edge.communities.test;
+package net.stuarthendren.jung.dendrogram.partition.impl;
 
 import net.stuarthendren.jung.partition.Partition;
 import net.stuarthendren.jung.partition.impl.PartitionImpl;

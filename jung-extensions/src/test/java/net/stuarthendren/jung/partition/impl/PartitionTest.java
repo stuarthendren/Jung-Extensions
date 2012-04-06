@@ -1,9 +1,10 @@
-package net.stuarthendren.edge.communities.test;
+package net.stuarthendren.jung.partition.impl;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import net.stuarthendren.jung.dendrogram.partition.impl.AbstractEdgeClusterTest;
 import net.stuarthendren.jung.partition.Partition;
 import net.stuarthendren.jung.partition.impl.PartitionImpl;
 
