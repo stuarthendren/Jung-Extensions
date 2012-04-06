@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Set;
 
 import net.stuarthendren.jung.dendrogram.partition.impl.AbstractEdgeClusterTest;
-import net.stuarthendren.jung.graphs.CompleteGraph;
+import net.stuarthendren.jung.graph.CompleteGraph;
 
 import org.apache.commons.collections15.CollectionUtils;
 import org.junit.Test;

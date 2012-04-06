@@ -1,5 +1,8 @@
-package net.stuarthendren.jung.graphs;
+package net.stuarthendren.jung.graph;
 
+import java.util.Collection;
+
+import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.UndirectedGraph;
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
 
@@ -32,10 +35,34 @@ public class CompleteGraph {
 		int edges = 0;
 		for (int i = 0; i < vertices; i++) {
 			for (int j = 0; j < vertices; j++) {
-				graph.addEdge(edges++, i, j);
+				if (i > j) {
+					graph.addEdge(edges++, i, j);
+				}
 			}
 		}
 		return graph;
 	}
 
+	public static <V, E> boolean isComplete(Graph<V, E> graph) {
+		int vertexCount = graph.getVertexCount();
+		if (vertexCount <= 1) {
+			return true;
+		}
+		int edgeCount = graph.getEdgeCount();
+		int minNeighbours = vertexCount - 1;
+		if (edgeCount < ((vertexCount * minNeighbours) / 2)) {
+			return false;
+		}
+		for (V v : graph.getVertices()) {
+			int requiredMinNeighboursSize = minNeighbours;
+			Collection<V> neighbors = graph.getNeighbors(v);
+			if (neighbors.contains(v)) {
+				requiredMinNeighboursSize++;
+			}
+			if (neighbors.size() < requiredMinNeighboursSize) {
+				return false;
+			}
+		}
+		return true;
+	}
 }

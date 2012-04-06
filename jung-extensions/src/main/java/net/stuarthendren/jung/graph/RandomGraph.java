@@ -1,4 +1,4 @@
-package net.stuarthendren.jung.graphs;
+package net.stuarthendren.jung.graph;
 
 import edu.uci.ics.jung.graph.UndirectedGraph;
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
