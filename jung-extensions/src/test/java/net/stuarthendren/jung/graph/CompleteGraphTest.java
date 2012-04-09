@@ -39,6 +39,11 @@ public class CompleteGraphTest {
 		assertEquals(1, graph.getEdgeCount());
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void testNegativeSize() {
+		CompleteGraph.generateGraph(-1);
+	}
+
 	@Test
 	public void testGenerateCompleteGraph() {
 		int size = (int) (Math.random() * 100);

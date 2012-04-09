@@ -24,6 +24,9 @@ public class CompleteGraph {
 	 * @return complete graph
 	 */
 	public static UndirectedGraph<Integer, Integer> generateGraph(int vertices) {
+		if (vertices < 0) {
+			throw new IllegalArgumentException("Number of edges must be positive");
+		}
 		UndirectedGraph<Integer, Integer> graph = new UndirectedSparseGraph<Integer, Integer>();
 		return populateGraph(vertices, graph);
 	}
