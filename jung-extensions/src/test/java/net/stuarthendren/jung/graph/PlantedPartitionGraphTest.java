@@ -29,17 +29,17 @@ public class PlantedPartitionGraphTest {
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testIntraNotGreaterThanInterProbability() {
+	public void testInterNotGreaterThanIntraProbability() {
 		PlantedPartitionGraph.generateGraph(5, 10, 0.7, 0.8);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testInterProbabilityLessThanOne() {
+	public void testIntraProbabilityLessThanOne() {
 		PlantedPartitionGraph.generateGraph(5, 10, 1.7, 0.8);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testIntraProbabilityLessThanOne() {
+	public void testInterProbabilityLessThanOne() {
 		PlantedPartitionGraph.generateGraph(5, 10, 0.7, 1.8);
 	}
 
@@ -56,26 +56,26 @@ public class PlantedPartitionGraphTest {
 		int numberOfClusters = 50;
 		int sizeOfClusters = 10;
 		int sizeOfGraph = numberOfClusters * sizeOfClusters;
-		double interClusterProbability = 0.9;
-		double intraClusterProbability = 0.1;
+		double intraClusterProbability = 0.9;
+		double interClusterProbability = 0.1;
 		Graph<Integer, Integer> graph = PlantedPartitionGraph.generateGraph(numberOfClusters, sizeOfClusters,
-				interClusterProbability, intraClusterProbability, 0);
+				intraClusterProbability, interClusterProbability, 0);
 		int numberOfInterEdges = 0;
 		int numberOfIntraEdges = 0;
 		for (Integer edge : graph.getEdges()) {
 			Pair<Integer> endpoints = graph.getEndpoints(edge);
 			if (endpoints.getFirst() % numberOfClusters == endpoints.getSecond() % numberOfClusters) {
-				numberOfInterEdges++;
-			} else {
 				numberOfIntraEdges++;
+			} else {
+				numberOfInterEdges++;
 			}
 		}
 
-		double maxNumberOfInterEdges = numberOfClusters * ((sizeOfClusters * (sizeOfClusters - 1)) / 2);
-		double maxNumberOfIntraEdges = ((sizeOfGraph * (sizeOfGraph - 1)) / 2) - maxNumberOfInterEdges;
+		double maxNumberOfIntraEdges = numberOfClusters * ((sizeOfClusters * (sizeOfClusters - 1)) / 2);
+		double maxNumberOfInterEdges = ((sizeOfGraph * (sizeOfGraph - 1)) / 2) - maxNumberOfIntraEdges;
 
-		assertEquals(interClusterProbability, numberOfInterEdges / maxNumberOfInterEdges, 0.004);
-		assertEquals(intraClusterProbability, numberOfIntraEdges / maxNumberOfIntraEdges, 0.001);
+		assertEquals(intraClusterProbability, numberOfIntraEdges / maxNumberOfIntraEdges, 0.004);
+		assertEquals(interClusterProbability, numberOfInterEdges / maxNumberOfInterEdges, 0.001);
 
 	}
 }
