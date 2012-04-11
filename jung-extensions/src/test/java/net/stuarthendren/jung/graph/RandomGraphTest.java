@@ -1,0 +1,37 @@
+package net.stuarthendren.jung.graph;
+
+import org.junit.Test;
+
+import edu.uci.ics.jung.graph.Graph;
+import static junit.framework.Assert.assertEquals;
+
+public class RandomGraphTest {
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testNegativeGroups() {
+		RandomGraph.generateGraph(-2, 0.5);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testNegativeVerticies() {
+		RandomGraph.generateGraph(10, 1.5);
+	}
+
+	@Test()
+	public void testSizeOfGraph() {
+		int size = 10;
+		Graph<Integer, Integer> graph = RandomGraph.generateGraph(size, 0);
+		assertEquals(size, graph.getVertexCount());
+		assertEquals(0, graph.getEdgeCount());
+	}
+
+	@Test()
+	public void testProbabilitites() {
+		int size = 100;
+		double probability = 0.5;
+		Graph<Integer, Integer> graph = RandomGraph.generateGraph(size, probability, 0);
+		double maxNumberOfEdges = (size * (size - 1)) / 2;
+		assertEquals(probability, graph.getEdgeCount() / maxNumberOfEdges, 0.01);
+
+	}
+}
