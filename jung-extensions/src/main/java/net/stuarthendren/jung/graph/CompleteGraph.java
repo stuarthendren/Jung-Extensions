@@ -1,71 +1,29 @@
 package net.stuarthendren.jung.graph;
 
-import java.util.Collection;
+import net.stuarthendren.jung.element.IntegerFactory;
+import net.stuarthendren.jung.graph.generator.CompleteGraphGenerator;
 
-import edu.uci.ics.jung.graph.Graph;
+import org.apache.commons.collections15.Factory;
+
 import edu.uci.ics.jung.graph.UndirectedGraph;
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
 
-/**
- * 
- * A graph is complete if every vertex has an edge to every other vertex.
- * 
- * @author Stuart Hendren
- * 
- */
-public class CompleteGraph {
+public class CompleteGraph extends DelegatingGraph<Integer, Integer> implements UndirectedGraph<Integer, Integer> {
 
-	/**
-	 * <p>
-	 * Create a complete graph with n vertices.
-	 * 
-	 * 
-	 * @param vertices
-	 * @return complete graph
-	 */
-	public static UndirectedGraph<Integer, Integer> generateGraph(int vertices) {
-		if (vertices < 0) {
-			throw new IllegalArgumentException("Number of edges must be positive");
-		}
-		UndirectedGraph<Integer, Integer> graph = new UndirectedSparseGraph<Integer, Integer>();
-		return populateGraph(vertices, graph);
+	public CompleteGraph(int numberOfVertices) {
+		super(generateGraph(numberOfVertices));
 	}
 
-	private static UndirectedGraph<Integer, Integer> populateGraph(int vertices, UndirectedGraph<Integer, Integer> graph) {
-		for (int i = 0; i < vertices; i++) {
-			graph.addVertex(i);
-		}
-		int edges = 0;
-		for (int i = 0; i < vertices; i++) {
-			for (int j = 0; j < vertices; j++) {
-				if (i > j) {
-					graph.addEdge(edges++, i, j);
-				}
-			}
-		}
-		return graph;
+	private static UndirectedGraph<Integer, Integer> generateGraph(int numberOfVertices) {
+		CompleteGraphGenerator<Integer, Integer> generator = new CompleteGraphGenerator<Integer, Integer>(
+				new Factory<UndirectedGraph<Integer, Integer>>() {
+
+					@Override
+					public UndirectedGraph<Integer, Integer> create() {
+						return new UndirectedSparseGraph<Integer, Integer>();
+					}
+				}, new IntegerFactory(), new IntegerFactory(), numberOfVertices);
+		return (UndirectedGraph<Integer, Integer>) generator.create();
 	}
 
-	public static <V, E> boolean isComplete(Graph<V, E> graph) {
-		int vertexCount = graph.getVertexCount();
-		if (vertexCount <= 1) {
-			return true;
-		}
-		int edgeCount = graph.getEdgeCount();
-		int minNeighbours = vertexCount - 1;
-		if (edgeCount < ((vertexCount * minNeighbours) / 2)) {
-			return false;
-		}
-		for (V v : graph.getVertices()) {
-			int requiredMinNeighboursSize = minNeighbours;
-			Collection<V> neighbors = graph.getNeighbors(v);
-			if (neighbors.contains(v)) {
-				requiredMinNeighboursSize++;
-			}
-			if (neighbors.size() < requiredMinNeighboursSize) {
-				return false;
-			}
-		}
-		return true;
-	}
 }

@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import net.stuarthendren.jung.cluster.vertex.impl.AbstractClusterImpl;
 import net.stuarthendren.jung.graph.CompleteGraph;
+import net.stuarthendren.jung.graph.generator.CompleteGraphGenerator;
 
 import org.junit.Test;
 
@@ -15,7 +16,7 @@ public abstract class AbstractClusterImplTest {
 
 	Collection<Integer> vertices = new ArrayList<Integer>();
 
-	Graph<Integer, Integer> graph = CompleteGraph.generateGraph(5);
+	Graph<Integer, Integer> graph = new CompleteGraph(5);
 	AbstractClusterImpl<Integer, Integer> cluster;
 
 	public void addVertices() {
@@ -38,7 +39,7 @@ public abstract class AbstractClusterImplTest {
 	public void testGetInducedGraph() {
 		Graph<Integer, Integer> inducedGraph = cluster.getInducedGraph();
 		assertEquals(3, inducedGraph.getVertexCount());
-		CompleteGraph.isComplete(inducedGraph);
+		CompleteGraphGenerator.isComplete(inducedGraph);
 	}
 
 }

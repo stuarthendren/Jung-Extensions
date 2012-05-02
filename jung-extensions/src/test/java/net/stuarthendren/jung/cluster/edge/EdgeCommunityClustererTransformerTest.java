@@ -35,7 +35,7 @@ public class EdgeCommunityClustererTransformerTest extends AbstractEdgeClusterTe
 
 	@Test
 	public void checkCompleteGraphReturnsBasePartition() {
-		UndirectedGraph<Integer, Integer> completeGraph = CompleteGraph.generateGraph(10);
+		UndirectedGraph<Integer, Integer> completeGraph = new CompleteGraph(10);
 		EdgeCommunityClustererTransformer<Integer, Integer> edgeCommunityClusterer = new EdgeCommunityClustererTransformer<Integer, Integer>();
 		Collection<Set<Integer>> edgePartition = edgeCommunityClusterer.transform(completeGraph);
 		assertEquals(1, edgePartition.size());

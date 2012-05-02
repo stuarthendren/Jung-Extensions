@@ -31,7 +31,7 @@ public abstract class AbstractInducedGraphTest {
 		vertices.add(0);
 		vertices.add(1);
 		vertices.add(2);
-		base = CompleteGraph.generateGraph(6);
+		base = new CompleteGraph(6);
 		graph = createInducedGraph(base, vertices);
 	}
 
