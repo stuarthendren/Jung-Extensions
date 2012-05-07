@@ -37,7 +37,6 @@ public class CompleteGraphGenerator<V, E> implements GraphGenerator<V, E> {
 		for (int i = 0; i < numberOfVertices; i++) {
 			graph.addVertex(vertexFactory.create());
 		}
-		int edges = 0;
 		Collection<V> vertices = graph.getVertices();
 		for (V v1 : vertices) {
 			for (V v2 : vertices) {
@@ -47,29 +46,6 @@ public class CompleteGraphGenerator<V, E> implements GraphGenerator<V, E> {
 			}
 		}
 		return graph;
-	}
-
-	public static <V, E> boolean isComplete(Graph<V, E> graph) {
-		int vertexCount = graph.getVertexCount();
-		if (vertexCount <= 1) {
-			return true;
-		}
-		int edgeCount = graph.getEdgeCount();
-		int minNeighbours = vertexCount - 1;
-		if (edgeCount < ((vertexCount * minNeighbours) / 2)) {
-			return false;
-		}
-		for (V v : graph.getVertices()) {
-			int requiredMinNeighboursSize = minNeighbours;
-			Collection<V> neighbors = graph.getNeighbors(v);
-			if (neighbors.contains(v)) {
-				requiredMinNeighboursSize++;
-			}
-			if (neighbors.size() < requiredMinNeighboursSize) {
-				return false;
-			}
-		}
-		return true;
 	}
 
 	@Override

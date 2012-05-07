@@ -5,7 +5,8 @@ import java.util.Collection;
 
 import net.stuarthendren.jung.cluster.vertex.impl.AbstractClusterImpl;
 import net.stuarthendren.jung.graph.CompleteGraph;
-import net.stuarthendren.jung.graph.generator.CompleteGraphGenerator;
+import net.stuarthendren.jung.graph.GraphUtils;
+import net.stuarthendren.jung.graph.UndirectedGraphWrapper;
 
 import org.junit.Test;
 
@@ -39,7 +40,7 @@ public abstract class AbstractClusterImplTest {
 	public void testGetInducedGraph() {
 		Graph<Integer, Integer> inducedGraph = cluster.getInducedGraph();
 		assertEquals(3, inducedGraph.getVertexCount());
-		CompleteGraphGenerator.isComplete(inducedGraph);
+		GraphUtils.isComplete(new UndirectedGraphWrapper<Integer, Integer>(inducedGraph));
 	}
 
 }
