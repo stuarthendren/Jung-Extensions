@@ -10,44 +10,44 @@ public class PlantedPartitionGraphTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testNegativeGroups() {
-		PlantedPartitionGraph.generateGraph(-2, 10, 0.7, 0.3);
+		new PlantedPartitionGraph(-2, 10, 0.7, 0.3);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testNegativeVerticies() {
-		PlantedPartitionGraph.generateGraph(10, -10, 0.7, 0.3);
+		new PlantedPartitionGraph(10, -10, 0.7, 0.3);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testNegativeTnterGroupProbability() {
-		PlantedPartitionGraph.generateGraph(5, 10, 0.7, -0.3);
+		new PlantedPartitionGraph(5, 10, 0.7, -0.3);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testNegativeIntraGroupProbability() {
-		PlantedPartitionGraph.generateGraph(5, 10, 0.7, -0.6);
+		new PlantedPartitionGraph(5, 10, 0.7, -0.6);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testInterNotGreaterThanIntraProbability() {
-		PlantedPartitionGraph.generateGraph(5, 10, 0.7, 0.8);
+		new PlantedPartitionGraph(5, 10, 0.7, 0.8);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testIntraProbabilityLessThanOne() {
-		PlantedPartitionGraph.generateGraph(5, 10, 1.7, 0.8);
+		new PlantedPartitionGraph(5, 10, 1.7, 0.8);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testInterProbabilityLessThanOne() {
-		PlantedPartitionGraph.generateGraph(5, 10, 0.7, 1.8);
+		new PlantedPartitionGraph(5, 10, 0.7, 1.8);
 	}
 
 	@Test()
 	public void testSizeOfGraph() {
 		int numberOfClusters = 5;
 		int sizeOfClusters = 10;
-		Graph<Integer, Integer> graph = PlantedPartitionGraph.generateGraph(numberOfClusters, sizeOfClusters, 0.9, 0.1);
+		Graph<Integer, Integer> graph = new PlantedPartitionGraph(numberOfClusters, sizeOfClusters, 0.9, 0.1);
 		assertEquals(numberOfClusters * sizeOfClusters, graph.getVertexCount());
 	}
 
@@ -58,7 +58,7 @@ public class PlantedPartitionGraphTest {
 		int sizeOfGraph = numberOfClusters * sizeOfClusters;
 		double intraClusterProbability = 0.9;
 		double interClusterProbability = 0.1;
-		Graph<Integer, Integer> graph = PlantedPartitionGraph.generateGraph(numberOfClusters, sizeOfClusters,
+		Graph<Integer, Integer> graph = new PlantedPartitionGraph(numberOfClusters, sizeOfClusters,
 				intraClusterProbability, interClusterProbability, 0);
 		int numberOfInterEdges = 0;
 		int numberOfIntraEdges = 0;

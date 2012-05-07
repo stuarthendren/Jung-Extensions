@@ -1,4 +1,4 @@
-package net.stuarthendren.jung.graph.generator;
+package net.stuarthendren.jung.graph;
 
 import java.util.ArrayList;
 import java.util.List;

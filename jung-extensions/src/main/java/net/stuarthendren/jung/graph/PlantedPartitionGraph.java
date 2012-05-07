@@ -2,6 +2,11 @@ package net.stuarthendren.jung.graph;
 
 import java.util.Random;
 
+import net.stuarthendren.jung.element.IntegerFactory;
+import net.stuarthendren.jung.graph.generator.PlantedPartitionGraphGenerator;
+
+import org.apache.commons.collections15.Factory;
+
 import edu.uci.ics.jung.graph.UndirectedGraph;
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
 
@@ -20,7 +25,8 @@ import edu.uci.ics.jung.graph.UndirectedSparseGraph;
  * 
  */
 @SuppressWarnings("serial")
-public class PlantedPartitionGraph extends UndirectedSparseGraph<Integer, Integer> {
+public class PlantedPartitionGraph extends DelegatingGraph<Integer, Integer> implements
+		UndirectedGraph<Integer, Integer> {
 
 	/**
 	 * Create a planted partition graph.
@@ -37,10 +43,10 @@ public class PlantedPartitionGraph extends UndirectedSparseGraph<Integer, Intege
 	 *            probability
 	 * 
 	 */
-	public static UndirectedGraph<Integer, Integer> generateGraph(int numberOfClusters, int sizeOfClusters,
-			double intraClusterProbability, double interClusterProbability) {
-		return generateGraph(numberOfClusters, sizeOfClusters, intraClusterProbability, interClusterProbability,
-				System.currentTimeMillis());
+	public PlantedPartitionGraph(int numberOfClusters, int sizeOfClusters, double intraClusterProbability,
+			double interClusterProbability) {
+		this(numberOfClusters, sizeOfClusters, intraClusterProbability, interClusterProbability, System
+				.currentTimeMillis());
 	}
 
 	/**
@@ -51,60 +57,32 @@ public class PlantedPartitionGraph extends UndirectedSparseGraph<Integer, Intege
 	 *            the number of groups (or clusters)
 	 * @param sizeOfClusters
 	 *            the number of vertices in a group
-	 * @param intraClusterProbability
-	 *            the probability of two vertices in the same group being connected
 	 * @param interClusterProbability
+	 *            the probability of two vertices in the same group being connected
+	 * @param intraClusterProbability
 	 *            the probability of two vertices not in the same group being connected must be less than interGroup
 	 *            probability
 	 * @param seed
 	 *            seed for {@link Random} number generation
 	 * 
 	 */
-	public static UndirectedGraph<Integer, Integer> generateGraph(int numberOfClusters, int sizeOfClusters,
-			double intraClusterProbability, double interClusterProbability, long seed) {
-		if (numberOfClusters < 0) {
-			throw new IllegalArgumentException("Number of groups must be positive");
-		}
-		if (sizeOfClusters < 0) {
-			throw new IllegalArgumentException("Group size must be positive");
-		}
-		if (intraClusterProbability < 0.0 || intraClusterProbability > 1.0 || interClusterProbability < 0.0
-				|| interClusterProbability > 1.0) {
-			throw new IllegalArgumentException("Probabilities must be between 0 and 1");
-		}
-		if (intraClusterProbability < interClusterProbability) {
-			throw new IllegalArgumentException("inter group probability must be less than the intra group probability");
-		}
-		UndirectedGraph<Integer, Integer> graph = new UndirectedSparseGraph<Integer, Integer>();
-		return populateGraph(graph, numberOfClusters, sizeOfClusters, intraClusterProbability, interClusterProbability,
-				seed);
+	public PlantedPartitionGraph(int numberOfClusters, int sizeOfClusters, double intraClusterProbability,
+			double interClusterProbability, long seed) {
+		super(generateGraph(numberOfClusters, sizeOfClusters, intraClusterProbability, interClusterProbability, seed));
 	}
 
-	private static UndirectedGraph<Integer, Integer> populateGraph(UndirectedGraph<Integer, Integer> graph,
-			int numberOfClusters, int sizeOfClusters, double intraClusterProbability, double interClusterProbability,
-			long seed) {
-		int graphSize = numberOfClusters * sizeOfClusters;
-		for (int i = 0; i < graphSize; i++) {
-			graph.addVertex(i);
-		}
-		Random rand = new Random(seed);
-		int edges = 0;
-		for (int i = 0; i < graphSize; i++) {
-			for (int j = 0; j < graphSize; j++) {
-				if (i > j) {
-					if (i % numberOfClusters == j % numberOfClusters) {
-						if (rand.nextDouble() <= intraClusterProbability) {
-							graph.addEdge(edges++, i, j);
-						}
-					} else {
-						if (rand.nextDouble() <= interClusterProbability) {
-							graph.addEdge(edges++, i, j);
-						}
+	private static UndirectedGraph<Integer, Integer> generateGraph(int numberOfClusters, int sizeOfClusters,
+			double intraClusterProbability, double interClusterProbability, long seed) {
+		PlantedPartitionGraphGenerator<Integer, Integer> generator = new PlantedPartitionGraphGenerator<Integer, Integer>(
+				new Factory<UndirectedGraph<Integer, Integer>>() {
+
+					@Override
+					public UndirectedGraph<Integer, Integer> create() {
+						return new UndirectedSparseGraph<Integer, Integer>();
 					}
-				}
-			}
-		}
-		return graph;
+				}, new IntegerFactory(), new IntegerFactory(), numberOfClusters, sizeOfClusters,
+				intraClusterProbability, interClusterProbability, seed);
+		return (UndirectedGraph<Integer, Integer>) generator.create();
 	}
 
 }
