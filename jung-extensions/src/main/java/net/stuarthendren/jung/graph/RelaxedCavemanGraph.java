@@ -35,8 +35,8 @@ public class RelaxedCavemanGraph {
 		Random rand = new Random(seed);
 
 		// Use determined seed so random properties are different but consistent for the same input seed
-		UndirectedGraph<Integer, Integer> graph = RandomGraph.generateGraph(
-				getRandomSize(rand, minCaveSize, maxCaveSize), probability, seed + 1);
+		UndirectedGraph<Integer, Integer> graph = new RandomGraph(getRandomSize(rand, minCaveSize, maxCaveSize),
+				probability, seed + 1);
 		for (int i = 1; i <= levels; i++) {
 			addLevel(getProbability(i, probability, scalingCoefficient), graph, minCaveSize, maxCaveSize, rand);
 		}
@@ -47,8 +47,8 @@ public class RelaxedCavemanGraph {
 			int maxCaveSize, Random rand) {
 		int vertexCount = graph.getVertexCount();
 		for (int i = 0; i < vertexCount; i++) {
-			UndirectedGraph<Integer, Integer> cave = RandomGraph.generateGraph(
-					getRandomSize(rand, minCaveSize, maxCaveSize), probability);
+			UndirectedGraph<Integer, Integer> cave = new RandomGraph(getRandomSize(rand, minCaveSize, maxCaveSize),
+					probability);
 			replace(graph, i, cave, rand);
 		}
 	}

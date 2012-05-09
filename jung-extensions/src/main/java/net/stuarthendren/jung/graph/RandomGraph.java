@@ -1,11 +1,14 @@
 package net.stuarthendren.jung.graph;
 
-import java.util.Random;
+import net.stuarthendren.jung.element.IntegerFactory;
+import net.stuarthendren.jung.graph.generator.RandomGraphGenerator;
+
+import org.apache.commons.collections15.Factory;
 
 import edu.uci.ics.jung.graph.UndirectedGraph;
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
 
-public class RandomGraph {
+public class RandomGraph extends DelegatingGraph<Integer, Integer> implements UndirectedGraph<Integer, Integer> {
 
 	/**
 	 * Create a randomly generated graph with a given number of vertices and probability of a link between any two edges
@@ -14,8 +17,8 @@ public class RandomGraph {
 	 * @param probability
 	 * @return Undirected randomly generated graph
 	 */
-	public static UndirectedGraph<Integer, Integer> generateGraph(int vertices, double probability) {
-		return generateGraph(vertices, probability, System.currentTimeMillis());
+	public RandomGraph(int numberOfVertices, double probability) {
+		this(numberOfVertices, probability, System.currentTimeMillis());
 	}
 
 	/**
@@ -23,34 +26,24 @@ public class RandomGraph {
 	 * 
 	 * @param vertices
 	 * @param probability
+	 * @param seed
+	 *            for random number generation
 	 * @return Undirected randomly generated graph
 	 */
-	public static UndirectedGraph<Integer, Integer> generateGraph(int vertices, double probability, long seed) {
-		if (vertices < 0) {
-			throw new IllegalArgumentException("Number of edges must be positive");
-		}
-		if (probability < 0.0 || probability > 1.0) {
-			throw new IllegalArgumentException("Probability must be between 0 and 1");
-		}
-		UndirectedGraph<Integer, Integer> graph = new UndirectedSparseGraph<Integer, Integer>();
-		return populateGraph(vertices, probability, graph, seed);
+	public RandomGraph(int numberOfVertices, double probability, long seed) {
+		super(generateGraph(numberOfVertices, probability, seed));
 	}
 
-	private static UndirectedGraph<Integer, Integer> populateGraph(int vertices, double probability,
-			UndirectedGraph<Integer, Integer> graph, long seed) {
-		Random rand = new Random(seed);
-		for (int i = 0; i < vertices; i++) {
-			graph.addVertex(i);
-		}
-		int edges = 0;
-		for (int i = 0; i < vertices; i++) {
-			for (int j = 0; j < vertices; j++) {
-				if (i < j && rand.nextDouble() < probability) {
-					graph.addEdge(edges++, i, j);
-				}
-			}
-		}
-		return graph;
+	private static UndirectedGraph<Integer, Integer> generateGraph(int numberOfVertices, double probability, long seed) {
+		RandomGraphGenerator<Integer, Integer> generator = new RandomGraphGenerator<Integer, Integer>(
+				new Factory<UndirectedGraph<Integer, Integer>>() {
+
+					@Override
+					public UndirectedGraph<Integer, Integer> create() {
+						return new UndirectedSparseGraph<Integer, Integer>();
+					}
+				}, new IntegerFactory(), new IntegerFactory(), numberOfVertices, probability, seed);
+		return (UndirectedGraph<Integer, Integer>) generator.create();
 	}
 
 }
