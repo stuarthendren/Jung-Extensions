@@ -24,7 +24,6 @@ import edu.uci.ics.jung.graph.UndirectedSparseGraph;
  * @author Stuart Hendren
  * 
  */
-@SuppressWarnings("serial")
 public class PlantedPartitionGraph extends DelegatingGraph<Integer, Integer> implements
 		UndirectedGraph<Integer, Integer> {
 

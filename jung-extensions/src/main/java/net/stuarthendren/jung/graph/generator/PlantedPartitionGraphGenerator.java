@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import net.stuarthendren.jung.graph.PlantedPartitionGraph;
-
 import org.apache.commons.collections15.Factory;
 
 import edu.uci.ics.jung.algorithms.generators.GraphGenerator;
@@ -13,8 +11,15 @@ import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.UndirectedGraph;
 
 /**
- * 
- * {@link PlantedPartitionGraph} generator
+ * <p>
+ * A planted partition graph is made up of <code>l</code> group each of size <code>k</code>. The probability of two
+ * vertices in the same group having an edge between them is <code>p</code> and otherwise the probability is
+ * <code>q</code> where <code>0 <= q < p <= 1</code>
+ * </p>
+ * <p>
+ * It can be used to test clustering algorithms, the greater the difference between <code>p</code> and <code>q</code>
+ * the easier it should be to detect the planted clusters.
+ * </p>
  * 
  * @author Stuart Hendren
  * 
