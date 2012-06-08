@@ -111,46 +111,87 @@
 					</execution>
 				</executions>
 			</plugin>
-		</plugins>
-	</build>
-
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.8</version>
-				<configuration>
-					<aggregate>true</aggregate>
-				</configuration>
-			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>cobertura-maven-plugin</artifactId>
 				<version>2.5.1</version>
 				<configuration>
-					<formats>
-						<format>html</format>
-						<format>xml</format>
-					</formats>
+					<instrumentation>
+						<ignores>
+							<ignore>net.stuarthendren.jung.experiment.*</ignore>
+						</ignores>
+						<excludes>
+							<exclude>net/stuarthendren/jung/experiment/*.class</exclude>
+						</excludes>
+					</instrumentation>
 					<check>
-						<branchRate>85</branchRate>
-						<lineRate>85</lineRate>
 						<haltOnFailure>true</haltOnFailure>
-						<totalBranchRate>85</totalBranchRate>
-						<totalLineRate>85</totalLineRate>
-						<packageLineRate>85</packageLineRate>
-						<packageBranchRate>85</packageBranchRate>
-						<regexes>
-							<regex>
-								<pattern>net.stuarthendren.jung.experiment.*</pattern>
-								<branchRate>0</branchRate>
-								<lineRate>0</lineRate>
-							</regex>
-						</regexes>
+						<lineRate>55</lineRate>
+						<branchRate>50</branchRate>
+						<packageLineRate>60</packageLineRate>
+						<packageBranchRate>60</packageBranchRate>
+						<totalLineRate>60</totalLineRate>
+						<totalBranchRate>60</totalBranchRate>
 					</check>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.0-beta-2</version>
+				<configuration>
+					<reportPlugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-javadoc-plugin</artifactId>
+							<version>2.7</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-jxr-plugin</artifactId>
+							<version>2.1</version>
+							<configuration>
+								<aggregate>true</aggregate>
+							</configuration>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-surefire-report-plugin</artifactId>
+							<version>2.6</version>
+						</plugin>
+						<plugin>
+							<groupId>org.codehaus.mojo</groupId>
+							<artifactId>cobertura-maven-plugin</artifactId>
+							<version>2.5.1</version>
+							<configuration>
+								<formats>
+									<format>html</format>
+									<format>xml</format>
+								</formats>
+								<check>
+									<haltOnFailure>false</haltOnFailure>
+									<lineRate>55</lineRate>
+									<branchRate>60</branchRate>
+									<packageLineRate>60</packageLineRate>
+									<packageBranchRate>60</packageBranchRate>
+									<totalLineRate>60</totalLineRate>
+									<totalBranchRate>60</totalBranchRate>
+								</check>
+								<instrumentation>
+									<ignores>
+										<ignore>net.stuarthendren.jung.experiment</ignore>
+									</ignores>
+								</instrumentation>
+							</configuration>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-checkstyle-plugin</artifactId>
+							<version>2.6</version>
+						</plugin>
+					</reportPlugins>
+				</configuration>
+			</plugin>
 		</plugins>
-	</reporting>
+	</build>
 </project>
