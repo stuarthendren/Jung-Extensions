@@ -1,6 +1,7 @@
 package net.stuarthendren.jung.graph;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.apache.commons.collections15.CollectionUtils;
 
@@ -73,7 +74,7 @@ public abstract class AbstractInducedGraph<V, E> implements Graph<V, E> {
 		if (containsEdge(edge)) {
 			return graph.getIncidentVertices(edge);
 		}
-		return null;
+		return Collections.emptySet();
 	}
 
 	@Override

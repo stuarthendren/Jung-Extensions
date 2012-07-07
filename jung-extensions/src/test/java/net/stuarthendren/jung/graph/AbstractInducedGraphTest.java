@@ -58,6 +58,16 @@ public abstract class AbstractInducedGraphTest {
 	}
 
 	@Test
+	public void testGetInEdges() {
+		assertEquals(2, graph.getInEdges(0).size());
+	}
+
+	@Test
+	public void testGetOutEdges() {
+		assertEquals(2, graph.getOutEdges(0).size());
+	}
+
+	@Test
 	public void testContainsVertex() {
 		assertTrue(graph.containsVertex(0));
 		assertFalse(graph.containsVertex(4));
@@ -137,7 +147,8 @@ public abstract class AbstractInducedGraphTest {
 	@Test
 	public void testIsNeighbor() {
 		assertTrue(graph.isNeighbor(0, 1));
-		assertFalse(graph.isNeighbor(0, 4));
+		assertTrue(graph.isNeighbor(0, 1));
+		assertFalse(graph.isNeighbor(4, 0));
 	}
 
 	@Test
@@ -148,7 +159,17 @@ public abstract class AbstractInducedGraphTest {
 
 	@Test
 	public void testDegree() {
-		assertEquals(2, graph.degree(1));
+		assertEquals(2, graph.degree(0));
+	}
+
+	@Test
+	public void testInDegree() {
+		assertEquals(2, graph.inDegree(1));
+	}
+
+	@Test
+	public void testOutDegree() {
+		assertEquals(2, graph.outDegree(2));
 	}
 
 	@Test
@@ -200,6 +221,11 @@ public abstract class AbstractInducedGraphTest {
 		graph.addEdge(10, 11, 12);
 	}
 
+	@Test(expected = UnsupportedOperationException.class)
+	public void testAddEdgeEVVEdgeType() {
+		graph.addEdge(10, 11, 12, EdgeType.DIRECTED);
+	}
+
 	@Test
 	public void testGetEndpoints() {
 		Pair<Integer> endpoints = graph.getEndpoints(base.findEdge(0, 1));
@@ -214,4 +240,28 @@ public abstract class AbstractInducedGraphTest {
 		assertEquals(Integer.valueOf(1), graph.getOpposite(0, base.findEdge(0, 1)));
 	}
 
+	@Test
+	public void testGetIncidentVerticies() {
+		Integer contained = base.findEdge(0, 1);
+		Integer notContained = base.findEdge(0, 5);
+		assertEquals(0, graph.getIncidentVertices(notContained).size());
+		assertEquals(2, graph.getIncidentVertices(contained).size());
+	}
+
+	@Test
+	public void testGetSucsessors() {
+		assertEquals(2, graph.getSuccessors(0).size());
+	}
+
+	@Test
+	public void testIsSucsessors() {
+		assertTrue(graph.isSuccessor(0, 1));
+		assertFalse(graph.isSuccessor(0, 3));
+	}
+
+	@Test
+	public void testIsPredecessor() {
+		assertTrue(graph.isPredecessor(0, 1));
+		assertFalse(graph.isPredecessor(0, 3));
+	}
 }

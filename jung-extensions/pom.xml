@@ -122,22 +122,29 @@
 				<artifactId>cobertura-maven-plugin</artifactId>
 				<version>2.5.1</version>
 				<configuration>
-					<instrumentation>
-						<ignores>
-							<ignore>net.stuarthendren.jung.experiment.*</ignore>
-						</ignores>
-						<excludes>
-							<exclude>net/stuarthendren/jung/experiment/*.class</exclude>
-						</excludes>
-					</instrumentation>
 					<check>
 						<haltOnFailure>true</haltOnFailure>
-						<lineRate>55</lineRate>
+						<lineRate>50</lineRate>
 						<branchRate>50</branchRate>
-						<packageLineRate>60</packageLineRate>
-						<packageBranchRate>60</packageBranchRate>
-						<totalLineRate>60</totalLineRate>
-						<totalBranchRate>60</totalBranchRate>
+						<totalLineRate>75</totalLineRate>
+						<totalBranchRate>75</totalBranchRate>
+						<regexes>
+							<regex>
+								<pattern>net.stuarthendren.jung.experiment.*</pattern>
+								<branchRate>0</branchRate>
+								<lineRate>0</lineRate>
+							</regex>
+							<regex>
+								<pattern>net.stuarthendren.jung.graph.DelegatingGraph*</pattern>
+								<branchRate>0</branchRate>
+								<lineRate>0</lineRate>
+							</regex>
+							<regex>
+								<pattern>net.stuarthendren.jung.visualization.*</pattern>
+								<branchRate>0</branchRate>
+								<lineRate>0</lineRate>
+							</regex>
+						</regexes>
 					</check>
 				</configuration>
 			</plugin>
