@@ -8,6 +8,9 @@ import edu.uci.ics.jung.graph.util.EdgeType;
 
 public class GraphUtils {
 
+	private GraphUtils() {
+	}
+
 	public static <V, E> boolean isUndirected(Graph<V, E> graph) {
 		return 0 == graph.getEdgeCount(EdgeType.DIRECTED);
 	}

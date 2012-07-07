@@ -3,9 +3,6 @@ package net.stuarthendren.jung.graph;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.stuarthendren.jung.graph.CompleteGraph;
-import net.stuarthendren.jung.graph.GraphUtils;
-
 import org.junit.Test;
 
 import edu.uci.ics.jung.graph.Graph;
@@ -18,10 +15,25 @@ import static junit.framework.Assert.assertTrue;
 public class GraphUtilsTest {
 
 	@Test
+	public void testSingleNodeIsComplete() {
+		UndirectedGraph<Integer, Integer> graph = new CompleteGraph(1);
+		assertTrue(GraphUtils.isComplete(graph));
+	}
+
+	@Test
 	public void testIsComplete() {
 		int size = (int) (Math.random() * 100);
 		UndirectedGraph<Integer, Integer> graph = new CompleteGraph(size);
 		assertTrue(GraphUtils.isComplete(graph));
+	}
+
+	@Test
+	public void testLoopIsComplete() {
+		int size = (int) (Math.random() * 100);
+		UndirectedGraph<Integer, Integer> looped = new CompleteGraph(size);
+
+		looped.addEdge(-1, 0, 0);
+		assertTrue(GraphUtils.isComplete(looped));
 	}
 
 	@Test
@@ -35,6 +47,15 @@ public class GraphUtilsTest {
 		}
 
 		assertFalse(GraphUtils.isComplete(graph));
+	}
+
+	@Test
+	public void testLoopIsNotComplete() {
+		UndirectedGraph<Integer, Integer> looped = new CompleteGraph(10);
+		looped.removeEdge(0);
+		looped.addEdge(-1, 0, 0);
+
+		assertFalse(GraphUtils.isComplete(looped));
 	}
 
 	@Test
