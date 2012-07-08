@@ -131,11 +131,13 @@
 						</excludes>
 					</instrumentation>
 					<check>
-						<haltOnFailure>true</haltOnFailure>
-						<lineRate>50</lineRate>
 						<branchRate>50</branchRate>
-						<totalLineRate>75</totalLineRate>
+						<lineRate>50</lineRate>
+						<haltOnFailure>true</haltOnFailure>
 						<totalBranchRate>75</totalBranchRate>
+						<totalLineRate>75</totalLineRate>
+						<packageLineRate>0</packageLineRate>
+						<packageBranchRate>0</packageBranchRate>
 						<regexes>
 							<regex>
 								<pattern>net.stuarthendren.jung.experiment.*</pattern>
@@ -154,6 +156,14 @@
 							</regex>
 						</regexes>
 					</check>
+					<executions>
+						<execution>
+							<goals>
+								<goal>clean</goal>
+								<goal>check</goal>
+							</goals>
+						</execution>
+					</executions>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -189,21 +199,49 @@
 									<format>html</format>
 									<format>xml</format>
 								</formats>
-								<check>
-									<haltOnFailure>false</haltOnFailure>
-									<lineRate>55</lineRate>
-									<branchRate>60</branchRate>
-									<packageLineRate>60</packageLineRate>
-									<packageBranchRate>60</packageBranchRate>
-									<totalLineRate>60</totalLineRate>
-									<totalBranchRate>60</totalBranchRate>
-								</check>
 								<instrumentation>
 									<ignores>
-										<ignore>net.stuarthendren.jung.experiment</ignore>
+										<ignore>net.stuarthendren.jung.experiment.*</ignore>
 									</ignores>
+									<excludes>
+										<exclude>net/stuarthendren/**/*Test.class</exclude>
+									</excludes>
 								</instrumentation>
+								<check>
+									<branchRate>50</branchRate>
+									<lineRate>50</lineRate>
+									<haltOnFailure>true</haltOnFailure>
+									<totalBranchRate>75</totalBranchRate>
+									<totalLineRate>75</totalLineRate>
+									<packageLineRate>0</packageLineRate>
+									<packageBranchRate>0</packageBranchRate>
+									<regexes>
+										<regex>
+											<pattern>net.stuarthendren.jung.experiment.*</pattern>
+											<branchRate>0</branchRate>
+											<lineRate>0</lineRate>
+										</regex>
+										<regex>
+											<pattern>net.stuarthendren.jung.graph.DelegatingGraph*</pattern>
+											<branchRate>0</branchRate>
+											<lineRate>0</lineRate>
+										</regex>
+										<regex>
+											<pattern>net.stuarthendren.jung.visualization.*</pattern>
+											<branchRate>0</branchRate>
+											<lineRate>0</lineRate>
+										</regex>
+									</regexes>
+								</check>
 							</configuration>
+							<executions>
+								<execution>
+									<goals>
+										<goal>clean</goal>
+										<goal>check</goal>
+									</goals>
+								</execution>
+							</executions>
 						</plugin>
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>

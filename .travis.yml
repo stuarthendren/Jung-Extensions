@@ -1,2 +1,2 @@
 language: java
-script: mvn -q clean install cobertura:cobertura cobertura:check
+script: mvn -q clean install cobertura:cobertura
