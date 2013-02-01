@@ -3,6 +3,9 @@
 
 _A collection of extensions to [Jung](http://jung.sourceforge.net/) primarily focused on adding Clustering algorithms_
 
+## Documentation
+
+ * [Edge communities](https://github.com/hendrens/Jung-Extensions/wiki/Edge-communities)
 
 ## Continuous Integration
 
