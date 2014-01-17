@@ -11,15 +11,14 @@ import edu.uci.ics.jung.graph.Graph;
  * graph.
  * 
  * @author Stuart Hendren
+ * @author WJR Longabaugh
  * 
  * @param <V>
  *            the vertex type
  * @param <E>
  *            the edge type
- *            
- * Modified by WJR Longabaugh 1/17/14: There are local maxima in the density function; 
- * we no longer exit at the first dip.
- *                   
+ * 
+ * 
  */
 public class EdgeDendogramUtils {
 

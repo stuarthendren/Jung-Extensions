@@ -37,9 +37,8 @@ import edu.uci.ics.jung.graph.UndirectedGraph;
  * This class follows the general pattern of clusters in Jung by implementing the {@link Transformer} interface.
  * 
  * @author Stuart Hendren
- *
- * Modified by WJR Longabaugh 1/17/14: There are local maxima in the density function; 
- * we no longer exit at the first dip.
+ * @author WJR Longabaugh
+ * 
  */
 public class EdgeCommunityClustererTransformer<V, E> implements Transformer<UndirectedGraph<V, E>, Collection<Set<E>>> {
 
