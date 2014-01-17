@@ -16,25 +16,26 @@ import edu.uci.ics.jung.graph.Graph;
  *            the vertex type
  * @param <E>
  *            the edge type
+ *            
+ * Modified by WJR Longabaugh 1/17/14: There are local maxima in the density function; 
+ * we no longer exit at the first dip.
+ *                   
  */
 public class EdgeDendogramUtils {
 
 	public static <V, E> Partition<E> getMaximalPatition(Graph<V, E> graph, Dendrogram<E> dendrogram) {
 		EdgePartitionDensityTransformer<V, E> transformer = new EdgePartitionDensityTransformer<V, E>(graph);
 		Iterator<Partition<E>> partitions = dendrogram.getPartitions();
-		Double currentDensity = 0.0;
+		Double maxDensity = 0.0;
 		Partition<E> last = null;
 		while (partitions.hasNext()) {
 			Partition<E> next = partitions.next();
 			Double partitionDensity = transformer.transform(next);
-			if (currentDensity <= partitionDensity) {
-				currentDensity = partitionDensity;
-				last = next;
-			} else {
-				break;
+			if (maxDensity <= partitionDensity) {
+				maxDensity = partitionDensity;
+				last = next.copy();
 			}
 		}
-
 		return last;
 	}
 

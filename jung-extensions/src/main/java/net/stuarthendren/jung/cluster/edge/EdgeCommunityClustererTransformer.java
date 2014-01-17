@@ -37,6 +37,9 @@ import edu.uci.ics.jung.graph.UndirectedGraph;
  * This class follows the general pattern of clusters in Jung by implementing the {@link Transformer} interface.
  * 
  * @author Stuart Hendren
+ *
+ * Modified by WJR Longabaugh 1/17/14: There are local maxima in the density function; 
+ * we no longer exit at the first dip.
  */
 public class EdgeCommunityClustererTransformer<V, E> implements Transformer<UndirectedGraph<V, E>, Collection<Set<E>>> {
 
@@ -60,25 +63,20 @@ public class EdgeCommunityClustererTransformer<V, E> implements Transformer<Undi
 
 		Iterator<Entry<Double, Collection<EdgePair<E>>>> it = sortedEdgeSimilarities.entrySet().iterator();
 		Partition<E> workingPartition = basePartition.copy();
+		Partition<E> returnPartition = basePartition.copy();
 		Double workingDensity = 0d;
 		while (it.hasNext()) {
 			Entry<Double, Collection<EdgePair<E>>> similarity = it.next();
 			for (EdgePair<E> pair : similarity.getValue()) {
-				workingPartition.mergeCluster(pair.getEdge1(), pair.getEdge2());
+				workingPartition.mergeCluster(pair.getEdge1(), pair.getEdge2());        
 			}
 			Double localDensity = transformer.transform(workingPartition);
-			if (localDensity > workingDensity) {
+			if (localDensity >= workingDensity) {
 				workingDensity = localDensity;
-				basePartition = workingPartition;
-				workingPartition = workingPartition.copy();
-			} else {
-				workingPartition = basePartition;
-				break;
+				returnPartition = workingPartition.copy();
 			}
 		}
-
-		return workingPartition.getPartitioning();
-
+		return returnPartition.getPartitioning();
 	}
 
 }
