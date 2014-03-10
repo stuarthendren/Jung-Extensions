@@ -20,3 +20,7 @@ Copyright (c) 2012 Stuart Hendren. Licensed under the [MIT License](http://opens
 
 
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/hendrens/jung-extensions/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
