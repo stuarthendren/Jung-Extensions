@@ -1,2 +1,19 @@
 language: java
-script: mvn -q clean install cobertura:cobertura
+script: mvn -q clean install
+
+env:
+  global:
+   - secure: "Rk6aS8jdLpvDlZxdKWplIhCPesKyagmm4+DltF2Sa1o3vgQcHJ5FdLk3+YkDINH03TrHSeVspDxyN0mnKRqOcm/gB8InPP7p9VbkYKcscsOUXP+h8rcJiSHlq5amUDzJcDds2X3FFLMTK5yko8jdqAGXpHryDb15Skbv3veE/IM="
+
+addons:
+  coverity_scan:
+    project:
+      name: "hendrens/Jung-Extensions"
+      description: "Extensions for Jung"
+    notification_email: stuarthendren@gmail.com
+    build_command_prepend:
+    build_command: mvn -q clean install
+    branch_pattern: coverity_scan
+
+after_success:
+  - mvn jacoco:report coveralls:jacoco
