@@ -5,7 +5,7 @@ import java.util.Set;
 
 import net.stuarthendren.jung.partition.Partition;
 
-import org.apache.commons.collections15.Transformer;
+import org.apache.commons.collections4.Transformer;
 
 import edu.uci.ics.jung.graph.Graph;
 

@@ -6,7 +6,7 @@ import java.util.Set;
 
 import net.stuarthendren.jung.cluster.edge.impl.EdgeDendogramUtils;
 
-import org.apache.commons.collections15.Transformer;
+import org.apache.commons.collections4.Transformer;
 
 import edu.uci.ics.jung.graph.UndirectedGraph;
 

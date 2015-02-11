@@ -1,11 +1,12 @@
 package net.stuarthendren.jung.graph;
 
+import static junit.framework.Assert.assertEquals;
+
 import java.util.Set;
 
 import org.junit.Test;
 
 import edu.uci.ics.jung.graph.Graph;
-import static junit.framework.Assert.assertEquals;
 
 public class BackedInducedGraphTest extends AbstractInducedGraphTest {
 

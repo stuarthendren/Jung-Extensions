@@ -1,13 +1,13 @@
 package net.stuarthendren.jung.graph;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import java.util.Collection;
 
 import org.junit.Test;
 
 import edu.uci.ics.jung.graph.Graph;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
 public class CompleteGraphTest {
 

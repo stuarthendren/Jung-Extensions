@@ -3,7 +3,7 @@ package net.stuarthendren.jung.graph;
 import net.stuarthendren.jung.element.IntegerFactory;
 import net.stuarthendren.jung.graph.generator.RelaxedCavemanGraphGenerator;
 
-import org.apache.commons.collections15.Factory;
+import org.apache.commons.collections4.Factory;
 
 import edu.uci.ics.jung.graph.UndirectedGraph;
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;

@@ -1,6 +1,7 @@
 package net.stuarthendren.jung.element;
 
-import org.apache.commons.collections15.Factory;
+import org.apache.commons.collections4.Factory;
+
 
 public class IntegerFactory implements Factory<Integer> {
 

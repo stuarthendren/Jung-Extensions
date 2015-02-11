@@ -1,10 +1,11 @@
 package net.stuarthendren.jung.graph;
 
+import static junit.framework.Assert.assertEquals;
+
 import org.junit.Test;
 
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.Pair;
-import static junit.framework.Assert.assertEquals;
 
 public class PlantedPartitionGraphTest {
 

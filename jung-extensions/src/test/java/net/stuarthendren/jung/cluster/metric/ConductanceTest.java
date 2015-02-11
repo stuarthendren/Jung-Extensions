@@ -1,14 +1,15 @@
 package net.stuarthendren.jung.cluster.metric;
 
+import static junit.framework.Assert.assertEquals;
+
 import java.util.Collections;
 
 import net.stuarthendren.jung.graph.CompleteGraph;
 
-import org.apache.commons.collections15.Transformer;
+import org.apache.commons.collections4.Transformer;
 import org.junit.Test;
 
 import edu.uci.ics.jung.graph.Graph;
-import static junit.framework.Assert.assertEquals;
 
 public class ConductanceTest {
 
