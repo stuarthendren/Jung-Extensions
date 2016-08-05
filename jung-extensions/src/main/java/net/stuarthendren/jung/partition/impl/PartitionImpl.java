@@ -31,7 +31,7 @@ public class PartitionImpl<T> implements Partition<T> {
 	/**
 	 * Create a new, empty, edge partition
 	 * 
-	 * @param graph
+	 * @param set of things to be partitioned
 	 */
 	public PartitionImpl(Collection<T> set) {
 		this.set = new HashSet<T>(set);
@@ -116,7 +116,7 @@ public class PartitionImpl<T> implements Partition<T> {
 	 *            the vertex type
 	 * @param <T>
 	 *            the edge type
-	 * @param graph
+	 * @param set
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> Partition<T> createMaximumPartition(Collection<T> set) {
