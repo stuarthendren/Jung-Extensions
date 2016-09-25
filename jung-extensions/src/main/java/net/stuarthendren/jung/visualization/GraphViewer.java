@@ -7,7 +7,7 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
 
-import org.apache.commons.collections15.Transformer;
+import org.apache.commons.collections4.Transformer;
 
 import edu.uci.ics.jung.algorithms.layout.FRLayout;
 import edu.uci.ics.jung.algorithms.layout.Layout;
@@ -48,7 +48,7 @@ public class GraphViewer {
 				if (vv.getPickedVertexState().isPicked(v)) {
 					return Color.cyan;
 				} else {
-					return Color.BLACK;
+					return Color.black;
 				}
 			}
 		});

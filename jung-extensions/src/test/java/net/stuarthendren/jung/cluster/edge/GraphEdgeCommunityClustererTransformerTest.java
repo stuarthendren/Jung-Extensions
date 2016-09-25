@@ -1,19 +1,19 @@
 package net.stuarthendren.jung.cluster.edge;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Collection;
 import java.util.Set;
 
 import net.stuarthendren.jung.dendrogram.partition.impl.AbstractEdgeClusterTest;
 import net.stuarthendren.jung.graph.CompleteGraph;
 
-import org.apache.commons.collections15.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.junit.Test;
 
 import edu.uci.ics.jung.graph.UndirectedGraph;
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class GraphEdgeCommunityClustererTransformerTest extends AbstractEdgeClusterTest {
 

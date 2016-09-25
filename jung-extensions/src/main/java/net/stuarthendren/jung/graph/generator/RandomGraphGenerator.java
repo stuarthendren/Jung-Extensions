@@ -5,7 +5,7 @@ import java.util.Random;
 import net.stuarthendren.jung.utils.UnorderedPair;
 import net.stuarthendren.jung.utils.UnorderedPairs;
 
-import org.apache.commons.collections15.Factory;
+import org.apache.commons.collections4.Factory;
 
 import edu.uci.ics.jung.algorithms.generators.GraphGenerator;
 import edu.uci.ics.jung.graph.Graph;

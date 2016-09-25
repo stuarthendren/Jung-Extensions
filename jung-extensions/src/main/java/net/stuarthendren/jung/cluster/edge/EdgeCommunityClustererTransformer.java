@@ -12,7 +12,7 @@ import net.stuarthendren.jung.cluster.edge.impl.EdgePartitionDensityTransformer;
 import net.stuarthendren.jung.partition.Partition;
 import net.stuarthendren.jung.partition.impl.PartitionImpl;
 
-import org.apache.commons.collections15.Transformer;
+import org.apache.commons.collections4.Transformer;
 
 import edu.uci.ics.jung.graph.UndirectedGraph;
 

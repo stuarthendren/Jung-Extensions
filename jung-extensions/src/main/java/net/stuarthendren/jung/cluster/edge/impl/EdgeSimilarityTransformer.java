@@ -3,7 +3,7 @@ package net.stuarthendren.jung.cluster.edge.impl;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.apache.commons.collections15.Transformer;
+import org.apache.commons.collections4.Transformer;
 
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.UndirectedGraph;

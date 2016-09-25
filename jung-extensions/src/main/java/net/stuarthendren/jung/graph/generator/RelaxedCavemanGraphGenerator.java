@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import org.apache.commons.collections15.Factory;
+import org.apache.commons.collections4.Factory;
 
 import edu.uci.ics.jung.algorithms.generators.GraphGenerator;
 import edu.uci.ics.jung.graph.Graph;
@@ -106,8 +106,6 @@ public class RelaxedCavemanGraphGenerator<V, E> implements GraphGenerator<V, E> 
 
 	private void replace(Graph<V, E> graph, V vertex, Graph<V, E> cave) {
 		Map<V, V> newVertices = new HashMap<V, V>();
-		int baseVerticies = graph.getVertexCount();
-		int baseEdges = graph.getEdgeCount();
 		int caveSize = cave.getVertexCount();
 		Iterator<V> iterator = cave.getVertices().iterator();
 		// Map first to original vertex

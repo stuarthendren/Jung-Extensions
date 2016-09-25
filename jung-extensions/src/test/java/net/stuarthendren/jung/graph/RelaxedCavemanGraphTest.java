@@ -1,10 +1,10 @@
 package net.stuarthendren.jung.graph;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 import edu.uci.ics.jung.graph.Graph;
-
-import static org.junit.Assert.assertTrue;
 
 public class RelaxedCavemanGraphTest {
 

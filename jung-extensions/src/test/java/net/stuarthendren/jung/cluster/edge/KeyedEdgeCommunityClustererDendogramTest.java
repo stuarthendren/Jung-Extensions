@@ -1,13 +1,12 @@
 package net.stuarthendren.jung.cluster.edge;
 
+import static org.junit.Assert.assertEquals;
 import net.stuarthendren.jung.cluster.edge.impl.EdgeDendogramUtils;
 import net.stuarthendren.jung.dendrogram.graph.GraphDendrogram;
 import net.stuarthendren.jung.dendrogram.graph.impl.KeyedDendrogram;
 import net.stuarthendren.jung.dendrogram.partition.impl.AbstractEdgeClusterTest;
 
 import org.junit.Test;
-
-import static org.junit.Assert.assertEquals;
 
 public class KeyedEdgeCommunityClustererDendogramTest extends AbstractEdgeClusterTest {
 

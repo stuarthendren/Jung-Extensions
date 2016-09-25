@@ -3,7 +3,7 @@ package net.stuarthendren.jung.graph;
 import java.util.Collection;
 import java.util.Collections;
 
-import org.apache.commons.collections15.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 
 import edu.uci.ics.jung.graph.Graph;
 import edu.uci.ics.jung.graph.util.EdgeType;

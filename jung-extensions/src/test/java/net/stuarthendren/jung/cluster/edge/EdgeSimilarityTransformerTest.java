@@ -1,5 +1,6 @@
 package net.stuarthendren.jung.cluster.edge;
 
+import static org.junit.Assert.assertEquals;
 import net.stuarthendren.jung.cluster.edge.impl.EdgeSimilarityTransformer;
 import net.stuarthendren.jung.cluster.edge.impl.KeyedEdgePair;
 
@@ -7,8 +8,6 @@ import org.junit.Test;
 
 import edu.uci.ics.jung.graph.UndirectedGraph;
 import edu.uci.ics.jung.graph.UndirectedSparseGraph;
-
-import static org.junit.Assert.assertEquals;
 
 /**
  * These tests are based on the similarity examples in Figure S1 of the paper (see {@link EdgeCommunityClusterer}).

@@ -8,11 +8,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import net.stuarthendren.jung.dendrogram.graph.DendrogramNode;
-import net.stuarthendren.jung.dendrogram.graph.impl.KeyedDendrogram;
-import net.stuarthendren.jung.dendrogram.graph.impl.KeyedDendrogramNode;
-import net.stuarthendren.jung.dendrogram.graph.impl.LeafDendrogramNode;
 
-import org.apache.commons.collections15.comparators.ComparableComparator;
+import org.apache.commons.collections4.comparators.ComparableComparator;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
